@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org' 
+source 'https://rails-assets.org'
 
 gem 'rails', '4.2.0'
 gem 'sqlite3'
@@ -12,6 +12,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'rails-assets-nvd3'
 gem 'bootstrap-sass'
 gem 'haml-rails'
+gem 'bourbon'
+gem 'neat'
+gem 'simple_form'
 
 group :development do
   gem 'better_errors'
