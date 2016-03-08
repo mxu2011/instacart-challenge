@@ -10,4 +10,19 @@ class Applicant < ActiveRecord::Base
   validates :phone_type, presence: true
   validates :workflow_state, presence: true
   validates :region, presence: true
+
+  before_save :set_initial_state, on: :create
+
+  def update_state
+    current_state = WORKFLOW_STATES.index(workflow_state)
+    if current_state == WORKFLOW_STATES.size - 1
+      return
+    end
+    new_state = current_state + 1
+    update workflow_state: WORKFLOW_STATES[new_state]
+  end
+
+  def set_initial_state
+    self.workflow_state = WORKFLOW_STATES[0] unless workflow_state
+  end
 end
