@@ -11,10 +11,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'rails-assets-nvd3'
 gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 gem 'haml-rails'
-gem 'bourbon'
-gem 'neat'
-gem 'simple_form'
+gem 'faker'
 
 group :development do
   gem 'pry'

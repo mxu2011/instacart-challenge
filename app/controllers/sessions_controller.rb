@@ -1,8 +1,9 @@
-def SessionsController < ApplicationController
+class SessionsController < ApplicationController
 
   def create
     applicant = Applicant.find_by(email: email)
     if applicant && applicant.phone == phone
+      flash[:success] = "Login successful"
       log_in applicant
       redirect_to edit_applicant_path(applicant)
     else

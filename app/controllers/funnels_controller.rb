@@ -32,7 +32,8 @@ class FunnelsController < ApplicationController
     hash = {}
     start_date = params[:start_date].try(:to_date) || Date.today
     end_date = params[:end_date].try(:to_date) || Date.today
-    results = FunnelsQuery.new(start_date, end_date).results
+    query = FunnelsQuery.new(start_date, end_date)
+    results = query.results
     results.each do |res|
       monday = res["monday"]
       sunday = res["sunday"]

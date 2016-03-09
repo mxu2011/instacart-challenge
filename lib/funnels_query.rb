@@ -1,5 +1,5 @@
 class FunnelsQuery
-  attr_accessor :start_date, :end_date
+  attr_reader :start_date, :end_date
 
   def initialize(start_date, end_date)
     @start_date = start_date
@@ -13,11 +13,11 @@ class FunnelsQuery
   private
 
   def week_start
-    "DATE_TRUNC('week', created_at)::date"
+    "date(created_at, 'weekday 1')"
   end
 
   def week_end
-    "(#{week_start} + '6 days'::interval)::date"
+    "date(created_at, 'weekday 1', '+6 days')"
   end
 
   def date_to_string(d)
@@ -36,8 +36,8 @@ class FunnelsQuery
     whens = []
     ranges.each_with_index do |arr, ind|
       whens << %{
-        WHEN created_at >= '#{date_string array[0]}'
-         AND created_at < '#{date_string array[1] + 1.day}' THEN #{index + 1}
+        WHEN created_at >= '#{date_to_string arr[0]}'
+         AND created_at < '#{date_to_string arr[1] + 1.day}' THEN #{ind + 1}
       }
     end
     %{
@@ -52,8 +52,8 @@ class FunnelsQuery
       SELECT
         #{week_start} AS monday, #{week_end} AS sunday, workflow_state, COUNT(*) as count, #{cases}
       FROM Applicants
-      WHERE created_at >= '#{date_string start_date}'
-        AND created_at <= '#{date_string end_date}'
+      WHERE created_at >= '#{date_to_string start_date}'
+        AND created_at <= '#{date_to_string end_date}'
       GROUP BY
         #{week_start}, #{week_end}, workflow_state, #{cases}
       ;

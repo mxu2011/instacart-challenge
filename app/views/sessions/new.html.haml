@@ -1,0 +1,11 @@
+%section
+  %h1
+    Login to edit your application
+  = form_tag login_path do
+    %p
+      Email:
+    = text_field_tag :email, @email, class: 'form-control', placeholder: "Email" type: "email"
+    %p
+      Phone:
+    = text_field_tag :phone, @phone, class: 'form-control', placeholder: "Phone number"
+  = button_tag "Login", class: 'btn btn-primary'

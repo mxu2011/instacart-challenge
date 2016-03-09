@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def print_errors(errors)
+    error = errors.first
+    error[0].to_s.split("_").join(" ").capitalize + " #{error[1]}"
+  end
+
   def permitted
     params.require(controller_name.singularize.to_sym).permit permitted_params
   end

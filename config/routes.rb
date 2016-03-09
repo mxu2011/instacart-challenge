@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post "shopper/login" => "sessions#create"
   post "shopper/logout" => "sessions#logout", as: :logout
 
-  resources :applicants, only: [:create, :update, :edit], path: "shoppers" do
+  resources :applicants, only: %i(create edit update), path: "shoppers" do
     collection do
       get :background
       post :authorize, path: "authorize"

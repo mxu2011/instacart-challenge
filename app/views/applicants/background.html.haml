@@ -1,1 +1,8 @@
-hsjdkfhsd
+%section
+  %h1
+    Background check authorization
+  .container
+    %p
+      Instacart is required to run background checks on all shopper applicants. Please check the box below to acknowledge that you understand and accept this.
+    = form_tag authorize_applicants_path do
+      = button_tag "Authorize", class: 'btn btn-lg btn-primary'

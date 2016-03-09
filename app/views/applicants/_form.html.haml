@@ -1,8 +1,20 @@
-= simple_form_for @applicant do |f|
-  = f.input :first_name, label: "First name: "
-  = f.input :last_name, label: "Last name: "
-  = f.input :email, label: "Email: "
-  = f.input :phone, label: "Phone number: "
-  = f.input :phone_type, collection: Applicant::PHONE_TYPES, prompt: "Phone type"
-  = f.input :region, collection: Applicant::REGIONS, prompt: "Region"
-  = f.button :submit
+.container
+  - if @errors
+    %p
+    = @errors
+  %fieldset
+    .form_group
+      = form_for @applicant do |f|
+        %p
+          = f.text_field :first_name, placeholder: "First name", class: 'form-control'
+        %p
+          = f.text_field :last_name, placeholder: "Last name", class: 'form-control'
+        %p
+          = f.text_field :email, placeholder: "Email", class: 'form-control', type: "email"
+        %p
+          = f.text_field :phone, placeholder: "Phone number", class: 'form-control'
+        %p
+          = f.select :phone_type, options_for_select(Applicant::PHONE_TYPES, @applicant.phone_type), {include_blank: true}, class: 'form-control'
+        %p
+          = f.select :region, options_for_select(Applicant::REGIONS, @applicant.region), {include_blank: true}, class: 'form-control'
+        = f.submit "Submit application", class: 'btn btn-large btn-success'

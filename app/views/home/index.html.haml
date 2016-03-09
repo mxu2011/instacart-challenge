@@ -1,1 +1,14 @@
-= link_to "Apply now", register_path
+%body
+  .container
+    .jumbotron
+      %h1
+        .display-3
+          Welcome to the exciting world of being an Instacart shopper!
+      %p
+        .lead
+          Click below to begin!
+      %p
+        - if logged_in?
+          = link_to "View Application", edit_applicant_path(current_applicant), class: 'btn btn-lg btn-success'
+        - else
+          = link_to "Register now!", register_path, class: 'btn btn-lg btn-success'

@@ -38,6 +38,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    autoprefixer-rails (6.3.3.1)
+      execjs
     better_errors (2.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -46,9 +48,6 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
-    bourbon (4.2.6)
-      sass (~> 3.4)
-      thor (~> 0.19)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -67,6 +66,8 @@ GEM
     debugger-linecache (1.2.0)
     erubis (2.7.0)
     execjs (2.2.2)
+    faker (1.6.3)
+      i18n (~> 0.5)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     haml (4.1.0.beta.1)
@@ -102,9 +103,6 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.0)
     multi_json (1.10.1)
-    neat (1.7.4)
-      bourbon (>= 4.0)
-      sass (>= 3.3)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     pry (0.10.3)
@@ -155,9 +153,6 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
     sexp_processor (4.4.4)
-    simple_form (3.2.1)
-      actionpack (> 4, < 5.1)
-      activemodel (> 4, < 5.1)
     slop (3.6.0)
     spring (1.2.0)
     sprockets (2.12.3)
@@ -190,23 +185,22 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   better_errors
   bootstrap-sass
-  bourbon
   byebug
   coffee-rails (~> 4.1.0)
+  faker
   haml-rails
   html2haml
   jbuilder (~> 2.0)
   jquery-rails
-  neat
   pry
   quiet_assets
   rails (= 4.2.0)
   rails-assets-nvd3
   rails_layout
   sass-rails (~> 5.0)
-  simple_form
   spring
   sqlite3
   turbolinks
