@@ -1,6 +1,6 @@
 class FunnelsController < ApplicationController
   def index
-    @funnel = {} # your code goes here
+    @funnel = serialized_response
 
     respond_to do |format|
       format.html { @chart_funnel = formatted_funnel }
@@ -26,5 +26,27 @@ class FunnelsController < ApplicationController
         values: v
       }
     end
+  end
+
+  def serialized_response
+    hash = {}
+    start_date = params[:start_date].try(:to_date) || Date.today
+    end_date = params[:end_date].try(:to_date) || Date.today
+    results = FunnelsQuery.new(start_date, end_date).results
+    results.each do |res|
+      monday = res["monday"]
+      sunday = res["sunday"]
+      key = [monday, sunday].join("-")
+      hash[key] = {} if hash[key].nil?
+      hash[key][object["workflow_state"]] = object["count"]
+    end
+    hash
+  end
+
+  def default_applicant_hash
+    array = Applicant::WORKFLOW_STATES.reject do |x|
+      x == "background_check_authorized"
+    end
+    Hash[array.map { |x| [x, 0] }]
   end
 end

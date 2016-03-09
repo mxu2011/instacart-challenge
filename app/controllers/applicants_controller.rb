@@ -1,6 +1,6 @@
 class ApplicantsController < ApplicationController
-  before_action :require_login, only: [:edit, :background_check, :authorize, :confirm]
-  before_action :check_authorization, only: [:background_check, :authorize]
+  before_action :require_login, only: [:edit, :background, :authorize, :confirm]
+  before_action :check_authorization, only: [:background, :authorize]
 
   def index
   end
@@ -13,9 +13,9 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.new(permitted)
     if @applicant.save
       log_in @applicant
-      redirect_to background_check_applicants_path
+      redirect_to background_applicants_path
     else
-      render "new"
+      render register_path
     end
   end
 
@@ -33,7 +33,7 @@ class ApplicantsController < ApplicationController
     @applicant = current_applicant
   end
 
-  def background_check
+  def background
   end
 
   def confirm
@@ -50,6 +50,10 @@ class ApplicantsController < ApplicationController
     if current_applicant.workflow_state == "background_check_authorized"
       redirect_to confirm_applicants_path
     end
+  end
+
+  def require_login
+    !@current_user.nil?
   end
 
   def permitted_params

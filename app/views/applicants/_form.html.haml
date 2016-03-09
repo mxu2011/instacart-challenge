@@ -1,3 +1,8 @@
 = simple_form_for @applicant do |f|
-  = f.input :first_name, label: 'First name'
+  = f.input :first_name, label: "First name: "
+  = f.input :last_name, label: "Last name: "
+  = f.input :email, label: "Email: "
+  = f.input :phone, label: "Phone number: "
+  = f.input :phone_type, collection: Applicant::PHONE_TYPES, prompt: "Phone type"
+  = f.input :region, collection: Applicant::REGIONS, prompt: "Region"
   = f.button :submit

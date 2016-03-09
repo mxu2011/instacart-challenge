@@ -11,7 +11,7 @@ class Applicant < ActiveRecord::Base
   validates :workflow_state, presence: true
   validates :region, presence: true
 
-  before_save :set_initial_state, on: :create
+  before_validation :set_initial_state, on: :create
 
   def update_state
     current_state = WORKFLOW_STATES.index(workflow_state)

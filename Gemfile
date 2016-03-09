@@ -17,6 +17,7 @@ gem 'neat'
 gem 'simple_form'
 
 group :development do
+  gem 'pry'
   gem 'better_errors'
   gem 'html2haml'
   gem 'quiet_assets'
