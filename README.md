@@ -1,3 +1,15 @@
+## Running the app
+1. `bundle install`
+2. `rake db:create`
+3. `rake db:migrate`
+4. `rake db:seed`
+5. `rails s`
+6. Go to `http://localhost:3000`
+
+The backend of the code here is solid, though the front-end is rather unimpressive. Using bootstrap I was able to make something passable, but hardly attractive.
+
+The git repo for this can be found at https://github.com/vorless/instacart-challenge
+
 Shopper Challenge
 =================
 
@@ -42,7 +54,7 @@ To monitor how well applicants are being moved through the hiring process, we wa
 
 ### Requirements
 
-Write the `/funnels.json` endpoint such that it takes two parameters as options, `start_date` and `end_date`, and returns a JSON response analyzing the `workflow_state`s of the Applicants, grouped by the week they applied.   
+Write the `/funnels.json` endpoint such that it takes two parameters as options, `start_date` and `end_date`, and returns a JSON response analyzing the `workflow_state`s of the Applicants, grouped by the week they applied. 
 
 This should be structured like:
 
